@@ -57,8 +57,11 @@
 )
 "Level one font lock.")
 
-(defconst json-mode-beautify-command-python
-  "python -c \"import sys,json,codecs,collections; data=json.loads(sys.stdin.read(),object_pairs_hook=collections.OrderedDict); print((codecs.getdecoder('unicode_escape')(json.dumps(data,sort_keys=%s,indent=4,separators=(',',': '))))[0])\"")
+(defconst json-mode-lint
+  "jsonlint --indent \"	\"")
+
+(defconst json-mode-lint-sort
+  "jsonlint --sort-keys --indent \"	\"")
 
 ;;;###autoload
 (defun json-mode-beautify (beg end &optional preserve-key-order)
@@ -66,11 +69,7 @@
   (interactive "r\nP")
   (shell-command-on-region (if mark-active beg (point-min))
                            (if mark-active end (point-max))
-                           (concat (if (executable-find "env") "env " "")
-                                   (format (if (executable-find "python2")
-                                               json-mode-beautify-command-python
-                                             json-mode-beautify-command-python)
-                                           (if preserve-key-order "False" "True")))
+                           (concat (if preserve-key-order json-mode-lint json-mode-lint-sort))
                            (current-buffer) t))
 
 ;;;###autoload
