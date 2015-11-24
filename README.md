@@ -41,16 +41,25 @@ Examples:
 
 ## Persistent Buffer List
 
-TBD: see if recentf-mode can be used to help with this.
-
 Much like command line history in bash, it would
 be nice if the list of buffers that emacs has open
 would be continuously saved somewhere (saved when buffers
-are created and deleted).  Occassionally, VM crashes or
+are created and deleted).  Occasionally, VM crashes or
 emacs crashes and would like to pick up where I left off.
 Also, when working on different projects, would like to
-name those projects.  Consider keying off the **same** shell environment
-variables that are set up when screen starts.
+name those projects.
+
+Summary:
+* ```%> newscr edit Project-1 emacs``` would load 'Project-1' buffers
+* ```^J, screen -t Project-2 2 emacs``` would load 'Project-2' buffers
+* as files are loaded and buffers are killed, the list is updated then (it is always up to date, I do not want to be required to explicitly save the list every so often, this should happened when the buffer list changes automatically)
+
+Ideas:
+* see if [desktop-save](http://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Emacs-Sessions.html) can be used
+** currently using ```desktop-save``` to save session to a directory under ~/desktop/<DIR>
+** currently using ```desktop-change-dir``` to switch to ~/desktop/<DIR2>
+* would ```recentf-mode``` help?
+* consider keying off the **same** shell environment variables that are set up when screen starts
 
 ```
 [paul@paul-sc:~/sc-minipoc/skycontrol/src]
