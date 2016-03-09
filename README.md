@@ -1,4 +1,16 @@
 
+# FIXMEs
+
+## JSON mode format
+
+* do not force the user to select the entire buffer (mark region)
+* do not replace entire contents with error message when syntax error is present
+
+## save in JSON mode
+
+Automatcially reformat like in go mode.
+Depends on a fix for JSON mode format.
+
 # Top Ten
 
 Things that would be useful.
